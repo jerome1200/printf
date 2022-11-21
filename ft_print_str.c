@@ -6,14 +6,13 @@
 /*   By: jede-bee <jede-bee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:03:46 by jede-bee          #+#    #+#             */
-/*   Updated: 2022/11/16 11:03:46 by jede-bee         ###   ########.fr       */
+/*   Updated: 2022/11/21 13:15:51 by jede-bee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "printf.h"
+#include "ft_printf.h"
 
-void	ft_putstr(char *str);
+void	ft_putstr(char *str)
 {
 	int	i;
 
@@ -29,9 +28,10 @@ int	ft_print_str(char *str)
 {
 	int	i;
 
+	i = 0;
 	if (str == NULL)
 	{
-		ft_putstr("null");
+		ft_putstr("(null)");
 		return (6);
 	}
 	while (str[i] != '\0')

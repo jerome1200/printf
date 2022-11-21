@@ -6,13 +6,11 @@
 /*   By: jede-bee <jede-bee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 09:57:39 by jede-bee          #+#    #+#             */
-/*   Updated: 2022/11/16 09:57:39 by jede-bee         ###   ########.fr       */
+/*   Updated: 2022/11/21 13:26:07 by jede-bee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "libft.h"
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_print_char(char c)
 {
@@ -26,18 +24,22 @@ int	ft_format(va_list arg, const char format)
 
 	print_result = 0;
 	if (format == 'c')
-		print_result = print_result + ft_print_char(va_arg(arg, int));
-	else if(format == 's')
+		print_result = print_result
+			+ ft_print_char((unsigned char)va_arg(arg, int));
+	else if (format == 's')
 		print_result = print_result + ft_print_str(va_arg(arg, char *));
-	else if(format == 'p')
-		print_result = print_result + ft_print_pointer(va_arg(arg, unsigned long long));
-	else if(format == 'd' || format == 'i')
+	else if (format == 'p')
+		print_result = print_result
+			+ ft_print_pointer(va_arg(arg, unsigned long long));
+	else if (format == 'd' || format == 'i')
 		print_result = print_result + ft_print_nbr(va_arg(arg, int));
-	else if(format == 'u')
-		print_result = print_result + ft_print_unsigned(va_arg(arg, unsigned int));
-	else if(format == 'x' || format == 'X')
-		print_result = print_result + ft_print_hexa(va_arg(va_arg, unsigned int), format);
-	else if(format == '%')
+	else if (format == 'u')
+		print_result = print_result
+			+ ft_print_unsigned(va_arg(arg, unsigned int));
+	else if (format == 'x' || format == 'X')
+		print_result = print_result
+			+ ft_print_hexa(va_arg(arg, unsigned int), format);
+	else if (format == '%')
 		print_result = print_result + ft_print_percent();
 	return (print_result);
 }
@@ -45,10 +47,11 @@ int	ft_format(va_list arg, const char format)
 int	ft_printf(const char *str, ...)
 {
 	va_list	arg_list;
-	int	i;
-	int	print_result;
+	int		i;
+	int		print_result;
 
 	i = 0;
+	print_result = 0;
 	va_start(arg_list, str);
 	while (str[i] != '\0')
 	{
@@ -61,6 +64,17 @@ int	ft_printf(const char *str, ...)
 			print_result = print_result + ft_print_char(str[i]);
 		i++;
 	}
-	va_end(arg_list, str);
+	va_end(arg_list);
 	return (print_result);
 }
+
+//  int main()
+// {
+// 	char carac = 'C';
+// 	char *str = "Salut les codeurs";
+// 	ft_printf("Le carac est: %c ) \n", carac);
+// 	ft_printf("La phrase \t est: %s |", str);
+// 	ft_printf("L hexaest ; %x", 10);
+
+// 	return(0);
+// }
